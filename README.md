@@ -481,6 +481,13 @@ service/opdemo-controller-manager-metrics-service created
 deployment.apps/opdemo-controller-manager created
 
 ```
+由于我的网络没有阻碍，可以拉取各种镜像，如果遇到镜像拉取失败，可以从这里拉取镜像，然后修改tag，push到docker官方仓库  
+
+https://www.katacoda.com/
+
+注册登录  
+
+![image](https://github.com/Mountains-and-rivers/k8s-crd/blob/main/image/05.png)
 
 crd部署
 

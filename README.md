@@ -496,7 +496,7 @@ crd部署
 ```
  # 和上面内容修改一致
 
- kubectl apply -f config/samples/app_v1beta1_appservice.yaml
+ kubectl apply -f config/samples/app_v1beta1_myapp.yaml
 ```
 
 ### 验证  

@@ -366,27 +366,27 @@ make run ENABLE_WEBHOOK=false # 启动控制器
 镜像制作
 
 ````
+
+docker login
+
+登录仓库
+
 [root@node opdemo]# export USERNAME=mangseng
 [root@node opdemo]# make docker-build IMG=$USERNAME/opdemo:v1.0.0
-which: no controller-gen in (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/local/go/bin:/root/bin)
-go: creating new go.mod: module tmp
-go: found sigs.k8s.io/controller-tools/cmd/controller-gen in sigs.k8s.io/controller-tools v0.3.0
+[root@node opdemo]# make docker-push IMG=$USERNAME/opdemo:v1.0.0
 /root/go/bin/controller-gen object:headerFile="hack/boilerplate.go.txt" paths="./..."
 go fmt ./...
 go vet ./...
+
 /root/go/bin/controller-gen "crd:trivialVersions=true" rbac:roleName=manager-role webhook paths="./..." output:crd:artifacts:config=config/crd/bases
 mkdir -p /root/go/src/opdemo/testbin
 test -f /root/go/src/opdemo/testbin/setup-envtest.sh || curl -sSLo /root/go/src/opdemo/testbin/setup-envtest.sh https://raw.githubusercontent.com/kubernetes-sigs/controller-runtime/v0.6.3/hack/setup-envtest.sh
 source /root/go/src/opdemo/testbin/setup-envtest.sh; fetch_envtest_tools /root/go/src/opdemo/testbin; setup_envtest_env /root/go/src/opdemo/testbin; go test ./... -coverprofile cover.out
-fetching envtest tools@1.16.4 (into '/root/go/src/opdemo/testbin')
-kubebuilder/bin/
-kubebuilder/bin/etcd
-kubebuilder/bin/kube-apiserver
-kubebuilder/bin/kubectl
+Using cached envtest tools from /root/go/src/opdemo/testbin
 setting up env vars
 ?   	github.com/Mountains-and-rivers/opdemo	[no test files]
 ?   	github.com/Mountains-and-rivers/opdemo/api/v1beta1	[no test files]
-ok  	github.com/Mountains-and-rivers/opdemo/controllers	6.382s	coverage: 0.0% of statements
+ok  	github.com/Mountains-and-rivers/opdemo/controllers	5.943s	coverage: 0.0% of statements
 docker build . -t mangseng/opdemo:v1.0.0
 Sending build context to Docker daemon  283.4MB
 Step 1/14 : FROM golang:1.13 as builder
@@ -402,32 +402,30 @@ Digest: sha256:8ebb6d5a48deef738381b56b1d4cd33d99a5d608e0d03c5fe8dfa3f68d41a1f8
 Status: Downloaded newer image for golang:1.13
  ---> d6f3656320fe
 Step 2/14 : WORKDIR /workspace
- ---> Running in fe030f0a63d9
-Removing intermediate container fe030f0a63d9
- ---> bd30019beaf4
+ ---> Running in d5584cc1a05e
+Removing intermediate container d5584cc1a05e
+ ---> b4275eb38007
 Step 3/14 : COPY go.mod go.mod
- ---> 5ffd81e24a60
+ ---> 6bc3ecdfd7b8
 Step 4/14 : COPY go.sum go.sum
- ---> 26d1a2354501
+ ---> 670ba33bc027
 Step 5/14 : RUN go mod download
- ---> Running in b939ac8bcf24
-go: finding cloud.google.com/go v0.38.0
-....
-....
-....
-go: finding sigs.k8s.io/yaml v1.2.0
-Removing intermediate container b939ac8bcf24
- ---> ede056302783
+ ---> Running in 793b093691ac
+...
+...
+
+Removing intermediate container 793b093691ac
+ ---> 22baf43e3997
 Step 6/14 : COPY main.go main.go
- ---> 102550ef954a
+ ---> c8eab00640f1
 Step 7/14 : COPY api/ api/
- ---> 5ab3fbbf9fe9
+ ---> d69d1b602fa7
 Step 8/14 : COPY controllers/ controllers/
- ---> 88d86c1fa560
+ ---> ca0778a065c9
 Step 9/14 : RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -a -o manager main.go
- ---> Running in a02b465a1380
-Removing intermediate container a02b465a1380
- ---> 562cfcc41596
+ ---> Running in 69a831b34415
+Removing intermediate container 69a831b34415
+ ---> 43d1500c29a0
 Step 10/14 : FROM gcr.io/distroless/static:nonroot
 nonroot: Pulling from distroless/static
 5dea5ec2316d: Pull complete 
@@ -435,28 +433,30 @@ Digest: sha256:cd784033c94dd30546456f35de8e128390ae15c48cbee5eb7e3306857ec17631
 Status: Downloaded newer image for gcr.io/distroless/static:nonroot
  ---> fb7b4da47366
 Step 11/14 : WORKDIR /
- ---> Running in 59d72380647b
-Removing intermediate container 59d72380647b
- ---> d4a1ff06b42d
+ ---> Running in 8237732ffffb
+Removing intermediate container 8237732ffffb
+ ---> 8e06bf55e177
 Step 12/14 : COPY --from=builder /workspace/manager .
- ---> bfa104fc874f
+ ---> 85f2a5ad9258
 Step 13/14 : USER nonroot:nonroot
- ---> Running in 94e131a499a8
-Removing intermediate container 94e131a499a8
- ---> 304aeda8a8a8
+ ---> Running in 8584b4ffd4d2
+Removing intermediate container 8584b4ffd4d2
+ ---> c48afce10ead
 Step 14/14 : ENTRYPOINT ["/manager"]
- ---> Running in 4d95125117b6
-Removing intermediate container 4d95125117b6
- ---> 783c6252b53b
-Successfully built 783c6252b53b
+ ---> Running in 69c1b43e72c6
+Removing intermediate container 69c1b43e72c6
+ ---> 02f2dfd16f6d
+Successfully built 02f2dfd16f6d
 Successfully tagged mangseng/opdemo:v1.0.0
+[root@node opdemo]# make docker-push IMG=$USERNAME/opdemo:v1.0.0
+docker push mangseng/opdemo:v1.0.0
+The push refers to repository [docker.io/mangseng/opdemo]
+37193d79c55e: Pushed 
+417cb9b79ade: Pushed 
+v1.0.0: digest: sha256:fd203ba194b53be9adaab041a7f160991599f11349056a768ce2dad6d7572582 size: 739
 ````
 
-推送到docker仓库
-
-```
-make docker-push IMG=$USERNAME/opdemo:v1.0.0
-```
+![image](https://github.com/Mountains-and-rivers/k8s-crd/blob/main/image/04.png)
 
 make 部署
 

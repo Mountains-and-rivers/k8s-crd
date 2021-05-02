@@ -470,3 +470,5 @@ yaml 部署
  kubectl apply -f config/samples/app_v1beta1_appservice.yaml
 ```
 
+阳明来是课程地址  
+https://youdianzhishi.com/web/course/1018?utm_source=blog&utm_campaign=referral&utm_medium=tophero

@@ -458,7 +458,7 @@ v1.0.0: digest: sha256:fd203ba194b53be9adaab041a7f160991599f11349056a768ce2dad6d
 
 ![image](https://github.com/Mountains-and-rivers/k8s-crd/blob/main/image/04.png)
 
-make 部署
+make 控制器部署
 
 ```
 make deploy IMG=$USERNAME/opdemo:v1.0.0
@@ -482,7 +482,7 @@ deployment.apps/opdemo-controller-manager created
 
 ```
 
-yaml 部署
+crd部署
 和上面内容修改一致
 ```
  kubectl apply -f config/samples/app_v1beta1_appservice.yaml

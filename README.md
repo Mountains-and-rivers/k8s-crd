@@ -57,11 +57,11 @@ chmod +x /usr/local/go/bin/operator-sdk
 
 该版本有调试日志，而1.7.0版本没有
 
-图片
+!(image)[https://github.com/Mountains-and-rivers/k8s-crd/blob/main/image/01.png]
 
 ### 配置windows远程调试环境
 
-图片
+!(image)[https://github.com/Mountains-and-rivers/k8s-crd/blob/main/image/02.png]
 
 ### 初始化项目
 
@@ -356,9 +356,8 @@ make run ENABLE_WEBHOOK=false # 启动控制器
 通过对资源对象进行各种操作可以看到日志输出变化
 ```
 
+!(image)[https://github.com/Mountains-and-rivers/k8s-crd/blob/main/image/03.png]
 
-
-图片
 
 ### 部署发布
 

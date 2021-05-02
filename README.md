@@ -465,7 +465,7 @@ make deploy IMG=$USERNAME/opdemo:v1.0.0
 ```
 
 yaml 部署
-
+和上面内容修改一致
 ```
  kubectl apply -f config/samples/app_v1beta1_appservice.yaml
 ```

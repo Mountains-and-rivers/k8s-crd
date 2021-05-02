@@ -367,7 +367,7 @@ make run ENABLE_WEBHOOK=false # 启动控制器
 
 ````
 
-docker login
+[root@node opdemo]#  docker login
 
 登录仓库
 
@@ -461,7 +461,7 @@ v1.0.0: digest: sha256:fd203ba194b53be9adaab041a7f160991599f11349056a768ce2dad6d
 make 控制器部署
 
 ```
-make deploy IMG=$USERNAME/opdemo:v1.0.0
+[root@node opdemo]# make deploy IMG=$USERNAME/opdemo:v1.0.0
 
 /root/go/bin/controller-gen "crd:trivialVersions=true" rbac:roleName=manager-role webhook paths="./..." output:crd:artifacts:config=config/crd/bases
 cd config/manager && /usr/local/bin/kustomize edit set image controller=mangseng/opdemo:v1.0.0

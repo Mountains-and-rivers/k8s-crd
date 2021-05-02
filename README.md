@@ -61,6 +61,8 @@ chmod +x /usr/local/go/bin/operator-sdk
 
 ### 配置windows远程调试环境
 
+go version 1.16.3  
+
 ![image](https://github.com/Mountains-and-rivers/k8s-crd/blob/main/image/02.png)
 
 ### 初始化项目

@@ -21,6 +21,8 @@ export GOPROXY="https://proxy.golang.org,direct"
 export GO111MODULE=on
 export GOPATH=/root/go
 export PATH=$PATH:/usr/local/go/bin
+
+soource vim /etc/profile
 ```
 
 ### operator-sdk v1.7.0 安装

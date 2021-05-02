@@ -497,5 +497,31 @@ crd部署
  kubectl apply -f config/samples/app_v1beta1_appservice.yaml
 ```
 
+### 验证  
+
+```
+[root@node opdemo]# kubectl get pod -n opdemo-system
+NAME                                         READY   STATUS    RESTARTS   AGE
+opdemo-controller-manager-57bccc448f-v7blh   2/2     Running   0          20m
+
+[root@node opdemo]# kubectl get pod -n opdemo-system
+NAME                                         READY   STATUS    RESTARTS   AGE
+opdemo-controller-manager-57bccc448f-v7blh   2/2     Running   0          20m
+
+[root@node opdemo]# kubectl logs -f opdemo-controller-manager-57bccc448f-v7blh -n opdemo-system
+error: a container name must be specified for pod opdemo-controller-manager-57bccc448f-v7blh, choose one of: [kube-rbac-proxy manager]
+[root@node opdemo]# kubectl logs -f opdemo-controller-manager-57bccc448f-v7blh -n opdemo-system manager
+2021-05-02T04:04:12.827Z	INFO	controller-runtime.metrics	metrics server is starting to listen	{"addr": "127.0.0.1:8080"}
+2021-05-02T04:04:12.828Z	INFO	setup	starting manager
+I0502 04:04:12.828899       1 leaderelection.go:242] attempting to acquire leader lease  opdemo-system/04d31993.ydzs.io...
+2021-05-02T04:04:12.828Z	INFO	controller-runtime.manager	starting metrics server	{"path": "/metrics"}
+I0502 04:04:12.838590       1 leaderelection.go:252] successfully acquired lease opdemo-system/04d31993.ydzs.io
+2021-05-02T04:04:12.838Z	DEBUG	controller-runtime.manager.events	Normal	{"object": {"kind":"ConfigMap","namespace":"opdemo-system","name":"04d31993.ydzs.io","uid":"ddd72f92-8f5c-47d9-84cc-dd40229b0289","apiVersion":"v1","resourceVersion":"4059032"}, "reason": "LeaderElection", "message": "opdemo-controller-manager-57bccc448f-v7blh_e891cd38-e36a-4e2a-a35d-9c1c10f3b118 became leader"}
+2021-05-02T04:04:12.838Z	INFO	controller	Starting EventSource	{"reconcilerGroup": "app.ydzs.io", "reconcilerKind": "MyApp", "controller": "myapp", "source": "kind source: /, Kind="}
+2021-05-02T04:04:12.939Z	INFO	controller	Starting EventSource	{"reconcilerGroup": "app.ydzs.io", "reconcilerKind": "MyApp", "controller": "myapp", "source": "kind source: /, Kind="}
+
+```
+
+
 阳明老师课程地址  
 https://youdianzhishi.com/web/course/1018?utm_source=blog&utm_campaign=referral&utm_medium=tophero

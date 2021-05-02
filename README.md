@@ -9,7 +9,7 @@
 
 ### 搭建集群
 
-参考链接
+参考链接：https://github.com/Mountains-and-rivers/mongo-replica-set
 
 ### 在master 节点安装go
 

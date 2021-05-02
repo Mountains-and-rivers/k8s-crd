@@ -462,6 +462,24 @@ make 部署
 
 ```
 make deploy IMG=$USERNAME/opdemo:v1.0.0
+
+/root/go/bin/controller-gen "crd:trivialVersions=true" rbac:roleName=manager-role webhook paths="./..." output:crd:artifacts:config=config/crd/bases
+cd config/manager && /usr/local/bin/kustomize edit set image controller=mangseng/opdemo:v1.0.0
+/usr/local/bin/kustomize build config/default | kubectl apply -f -
+namespace/opdemo-system created
+Warning: apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use apiextensions.k8s.io/v1 CustomResourceDefinition
+customresourcedefinition.apiextensions.k8s.io/myapps.app.ydzs.io configured
+role.rbac.authorization.k8s.io/opdemo-leader-election-role created
+clusterrole.rbac.authorization.k8s.io/opdemo-manager-role created
+clusterrole.rbac.authorization.k8s.io/opdemo-proxy-role created
+Warning: rbac.authorization.k8s.io/v1beta1 ClusterRole is deprecated in v1.17+, unavailable in v1.22+; use rbac.authorization.k8s.io/v1 ClusterRole
+clusterrole.rbac.authorization.k8s.io/opdemo-metrics-reader created
+rolebinding.rbac.authorization.k8s.io/opdemo-leader-election-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/opdemo-manager-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/opdemo-proxy-rolebinding created
+service/opdemo-controller-manager-metrics-service created
+deployment.apps/opdemo-controller-manager created
+
 ```
 
 yaml 部署

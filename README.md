@@ -88,7 +88,7 @@ metadata:
   name: myapp-demo
 spec:
   size: 2
-  image: nginx:1.17.9
+  image: nginx:1.19.1
   ports:
     - port: 80
       targetPort: 80

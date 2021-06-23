@@ -524,6 +524,3 @@ I0502 04:04:12.838590       1 leaderelection.go:252] successfully acquired lease
 
 ```
 由于我的集群版本过高，还有些小问题，建议使用1.18 1.19 版本的集群 
-
-阳明老师课程地址  
-https://youdianzhishi.com/web/course/1018?utm_source=blog&utm_campaign=referral&utm_medium=tophero

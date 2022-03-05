@@ -41,7 +41,7 @@ operator-sdk create api --group app --version v1beta1 --kind MyApp --resource --
 
 ```
 
-### perator-sdk v1.1.0 安装
+### operator-sdk v1.1.0 安装
 
 ```
 本次实践采用版本 operator-sdk 1.1.0版本
